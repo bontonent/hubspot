@@ -15,12 +15,12 @@ from threading import Thread, Semaphore
 class main_exercise:
     def __init__(self):
         self.current_page = []
-        self.datas = []
+        self.code_urls_page = []
     async def main(self):
         #print("work")
-        self.datas = await self.get_items_url_catalog()
+        self.code_urls_page = await self.get_items_url_catalog()
 
-        pprint(self.datas)
+        pprint(self.code_urls_page)
 
     async def get_items_url_catalog(self):
         p = await async_playwright().start()
@@ -33,8 +33,7 @@ class main_exercise:
         time.sleep(3)
 
         
-        
-        for i in range(2):
+        for i in range(10):
             start_page = page_categories.url
             con_scroll_wait_items = Queue()
             await asyncio.gather(
@@ -50,12 +49,12 @@ class main_exercise:
                 break
             
         
-        pprint(self.datas)
-        print(len(self.datas))
+        pprint(self.code_urls_page)
+        print(len(self.code_urls_page))
         time.sleep(5)
         
         await website.close()
-        # # return datas()
+        # # return urls_page()
             
     async def get_data_page(self,page_categories):
         # get_data page
@@ -63,14 +62,12 @@ class main_exercise:
         page_companies = await page_categories.query_selector_all("main > div > div > div > div > div > div > div > a > div > div > div > div > span > h2")
 
         for page_category in page_companies:
-            data = {
+            code_url = {
                 'url': None,
-                'Name':None
             }
             url_page_company = await  (await page_category.query_selector("../../../../../..")).get_attribute("href")
-            data["url"] = "".join(["https://ecosystem.hubspot.com",url_page_company])
-            data['Name'] = await page_category.text_content()
-            self.datas.append(data)
+            code_url["url"] = str(url_page_company).replace("/marketplace/solutions/","")
+            self.code_urls_page.append(code_url)
         return None
 
     async def scroll_down(self,page_categories,con_scroll_wait_items):
