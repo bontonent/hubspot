@@ -2,6 +2,8 @@ import requests
 import json
 import random
 from pprint import pprint
+# Need refine for run from main.py
+import comment
 
 def parsing_product_page(code_payload, choose_agent):
   # Preparing
@@ -18,10 +20,15 @@ def parsing_product_page(code_payload, choose_agent):
 
   # Return json script
   result = products['data']['result']
-  return result
+  comments = comment.comment(result['id'],choose_agent)
+
+  return comments,result
 
 # Test how work. Run this script
 if __name__ == "__main__":
   code_payload = 'performars'
   user_agent = "explorer|Mozilla/5.0 (compatible; MSIE 8.0; Windows NT 6.0; Trident/4.0)"
-  pprint(parsing_product_page(code_payload,user_agent))
+  comments, parsing_data = parsing_product_page(code_payload,user_agent)
+  pprint(comments)
+  pprint(parsing_data)
+
