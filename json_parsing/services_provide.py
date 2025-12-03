@@ -2,16 +2,18 @@ import requests
 import json
 from pprint import pprint
 
-header = {
-    "":""
-}
+def services_provide():    
+    # prepering
+    header = {"":""}
+    url = "https://app.hubspot.com/api/service-catalog/public/v1/services?language=en&hs_static_app=ecosystem-marketplace-solutions-public-ui"
+    
+    # get json script
+    response = requests.get(url,header)
+    result  = response.json()
+    return result
 
-url = "https://app.hubspot.com/api/service-catalog/public/v1/services?language=en&hs_static_app=ecosystem-marketplace-solutions-public-ui&hs_static_app_version=1.16741"
-
-
-response = requests.get(url,header)
-
-services  = response.json()
-for service in services:
-    print(service['id'], service['name'])
+# Test run. Run this script for see json
+if __name__ == "__main__":
+    pprint(services_provide())
+    
 
