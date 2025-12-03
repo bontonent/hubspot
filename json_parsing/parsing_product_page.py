@@ -147,45 +147,6 @@ BASE_DIR = Path(__file__).resolve().parent
 user_agent = user_agents.get_agent("/".join([str(BASE_DIR),"user_agents/"]))
 choose_user = user_agent[random.randint(0,len(user_agent)-1)]
 
-url = "https://api.hubspot.com/chirp-frontend-external-na1-proxy/v1/gateway/com.hubspot.marketplace.profiles.rpc.ProfilesPublicRpc/getProfile?hs_static_app=ecosystem-marketplace-solutions-public-ui&hs_static_app_version=1.16741&clienttimeout=5000"
-datas_product = {
-    "description":None,
-    "id":None,
-    "name":None,
-    "partnerType":None,
-    "slug":None,
-    "websiteurl":None,
-}
-# catalogservice = {
-#     "id":None,
-#     "name":None
-# }
-# credentials = {
-#     "id": None,
-#     "name":None
-# }
-inductries = {
-    "name":None
-}
-languages = {
-    "name":None
-}
-ragion_service = {
-    "name":None
-}
-
-data_location = {
-    "autocompleted": None,
-    'country': None,
-    'full': None,
-    'locality': None,
-    'remote': None,
-    'state': None,
-    'street1': None,
-    'street2': None,
-    'zip': None
-    }
-
 page = pages[5]
 
 header = {
@@ -198,7 +159,9 @@ if str(response) != "<Response [200]>":
     print(response)
 
 products = response.json()
-pprint(products)
+result = products['data']['result']
+
+retunr result
 
 #    print(page_product.xpath("//h1//text()"))
 #https://api.hubspot.com/chirp-frontend-external-na1-proxy/v1/gateway/com.hubspot.marketplace.profiles.rpc.ProfilesPublicRpc/getProfile?hs_static_app=ecosystem-marketplace-solutions-public-ui&hs_static_app_version=1.16741&clienttimeout=5000
