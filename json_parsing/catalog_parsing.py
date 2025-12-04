@@ -1,22 +1,31 @@
 import requests
 import json
 from pprint import pprint
+from tqdm import tqdm
 
-def catalog_parsing(choose_agent):
+def catalog_parsing(choose_agent, times = 0):
     # preparing
     datas = []
     search_one_time = 100 # less than or equal 100 
     get_data = 0; 
     
     # Geting each data from him
-    run_parsing = True
-    while run_parsing:
+    first_print = True
+    while True:
         total_products, data = parsing_ones(choose_agent,search_one_time,get_data)
         get_data += search_one_time
         datas += data
-        run_parsing = False
         if total_products <= get_data:
-            run_parsing = False
+            break
+        elif (times > 0):
+            if get_data/100 > times-1:
+                break
+
+        # Understnad how much
+        if first_print:
+            print(total_products)
+            first_print=False
+        
     return datas
 
 def parsing_ones(choose_agent,search_one_time,get_data):
