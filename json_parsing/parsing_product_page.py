@@ -3,7 +3,9 @@ import json
 import random
 from pprint import pprint
 # Need refine for run from main.py
+
 from json_parsing import comment
+#import comment #for run only this .py
 
 
 def parsing_product_page(code_payload, choose_agent):

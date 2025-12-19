@@ -1,3 +1,7 @@
 lxml
 bs4
 requests
+pymongo
+psycopg2
+tqdm
+dotenv

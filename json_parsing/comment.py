@@ -24,16 +24,17 @@ def parsing_ones(code_product, choose_agent,page,search_one_time,get_data):
     header = {
         "content-type": "application/json",
         "User-Agent": choose_agent,
-        "Coockie":"_cfuvid=6rG4fisgKo.xvGbvtQoLJgnbmD97TVLuDiAoTTrBAG0-1764668437139-0.0.1.1-604800000"}
+        "Coockie": "_cfuvid=6rG4fisgKo.xvGbvtQoLJgnbmD97TVLuDiAoTTrBAG0-1764668437139-0.0.1.1-604800000"}
 
     payload = {
-    "limit": search_one_time    # limit search one time
-    ,"page": page               # id_page
-    ,"entityId":code_product    # id product
-    ,"sortFields":["NEWEST"]
-    ,"offset":get_data          # already get data
-    ,"language":"en"
-    ,"reviewTypes":["PROFILE"]}
+        "limit": search_one_time    # limit search one time
+        ,"page": page               # id_page
+        ,"entityId": code_product    # id product
+        ,"sortFields": ["NEWEST"]
+        ,"offset": get_data          # already get data
+        ,"language": "en"
+        ,"reviewTypes": ["PROFILE"]
+    }
 
     # Run get json script
     response = requests.post(url, headers = header, data = json.dumps(payload))
