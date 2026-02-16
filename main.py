@@ -38,7 +38,7 @@ class main_script:
             for fut in tqdm(as_completed(future),total=len(future)):
                 try:
                     comments,result = fut.result(timeout=3)
-                except:
+                except Exception as e:
                     for n in range(2):
                         try:
                             retry_res = thread.submit(parsing_product_page.parsing_product_page, code,self.choose_user).result(timeout=3)
@@ -47,7 +47,10 @@ class main_script:
                             print(e)
                             continue
                 result["comment"] = comments
-                result["_id"] = result.pop("id")
+                try:
+                    result["_id"] = result.pop("id")
+                except:
+                    None
                 md_connect.cc_products(db, [result])
         
         md_connect.rc_services(db)
