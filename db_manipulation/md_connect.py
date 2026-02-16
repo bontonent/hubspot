@@ -1,9 +1,13 @@
 from pymongo import MongoClient
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 def connect():
     try:
-        client = MongoClient('mongodb://localhost:27017/')
+        mongo_url=os.getenv('mongo_url')
+        client = MongoClient(mongo_url)
         db = client.hubspot
         return db
     except Exception as e:

@@ -40,7 +40,7 @@ def get_month_fields(timestamp_ms):
     return (dim_month_id, year, mouth, mounth_name, quarter)
 
 
-
+# Create data warehouse
 # Connect
 db = md_connect.connect()
 conn = connect_to_db()
