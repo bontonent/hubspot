@@ -48,7 +48,7 @@ mongoDB database
 ![Photo](./readme_photo/er_diagram-er-diagrama.drawio.png)
 
 postgreSQL data warehouse
-![Photo-2](./readme_photo/datawarehous.png)
+![Photo-2](./readme_photo/datawarehouse.png)
 
 ---
 
